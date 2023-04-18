@@ -14,6 +14,11 @@ test=[122, "victor", ]
 class Person:
     name="victor"
     age=18
+    
+person1= Person()
+person2= Person()
+
+print(person1.name)
 
 
 
