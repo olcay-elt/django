@@ -23,6 +23,11 @@ print(person1.name)
 Person.job="developer"
 print(person1.job)
 
+def set_details(self, name, age):
+    
+@staticmethod
+def salute():
+
 
 
 
