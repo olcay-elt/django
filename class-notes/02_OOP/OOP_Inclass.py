@@ -20,6 +20,9 @@ person2= Person()
 
 print(person1.name)
 
+Person.job="developer"
+print(person1.job)
+
 
 
 
