@@ -16,7 +16,7 @@ class Person:
     age=18
     
 person1= Person()
-person2= Person()
+person2= Person(
 
 print(person1.name)
 
@@ -27,6 +27,10 @@ def set_details(self, name, age):
     
 @staticmethod
 def salute():
+    
+
+def __init__(self, name, age):
+    S
 
 
 
