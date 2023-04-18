@@ -121,56 +121,56 @@ print("-------------------------------------")
 #     Polymorphism
 
 
-class Person:
-    company = "clarusway"
+# class Person:
+#     company = "clarusway"
     
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-        self._salary = 5000
-        self.__id = 2300
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#         self._salary = 5000
+#         self.__id = 2300
         
-    def __str__(self):
-        return f"{self.name} - {self.age}"
+#     def __str__(self):
+#         return f"{self.name} - {self.age}"
     
 
-    def get_details(self):
-        print(self.name , self.age)
+#     def get_details(self):
+#         print(self.name , self.age)
     
 # print(person1._salary)
 # # print(person1.__id)
 # print(person1._Person__id)
 
-class Language:
-    def __init__(self, lang):
-        self.lang = lang
+# class Language:
+#     def __init__(self, lang):
+#         self.lang = lang
     
-    def display_langs(self):
-        print(self.lang)
+#     def display_langs(self):
+#         print(self.lang)
 
-class Employee(Person, Language):
+# class Employee(Person, Language):
     
-    def __init__(self, name, age, path, lang):
-        super().__init__(name, age)
-        # self.name = name
-        # self.age = age
-        self.path = path
-        # self.lang = lang
-        Language.__init__(self, lang)
+#     def __init__(self, name, age, path, lang):
+#         super().__init__(name, age)
+#         # self.name = name
+#         # self.age = age
+#         self.path = path
+#         # self.lang = lang
+#         Language.__init__(self, lang)
         
-    def get_details(self):
-        Person.get_details(self)
-        Language.display_langs(self)
-        print(self.path)
+#     def get_details(self):
+#         Person.get_details(self)
+#         Language.display_langs(self)
+#         print(self.path)
 
-emp1 = Employee("victor", 18, "Fullstack", ["javascript", "python"])
+# emp1 = Employee("victor", 18, "Fullstack", ["javascript", "python"])
 # emp1.get_details()
 
 
 
 # print(Employee.mro())
 # print(help(Employee))
-print(emp1.__dict__)
+# print(emp1.__dict__)
 
 
 
