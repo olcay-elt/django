@@ -12,8 +12,7 @@ class Student(models.Model):
     update_date=models.DateTimeField(auto_now=True)    # her update de günceller
     avatar=models.ImageField(blank=True,null=True) #pillow kur, settings ve url de istenen güncellemeleri yap
                              
-    def __str__(self):
-        return f"{self.first_name}-{self.last_name}"
+    
     
     class Meta:
         # ordering=('number')
