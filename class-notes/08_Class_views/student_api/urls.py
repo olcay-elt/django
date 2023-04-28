@@ -8,7 +8,11 @@ from .views import (
     student_update,
     student_delete,
     StudentListCreate,
-    StudentDetail
+    StudentDetail,
+    StudentGAV,
+    StudentDetailViewGAV,
+    StudentCV,
+    StudentDetailCV
     )
 
 urlpatterns = [
@@ -25,8 +29,15 @@ urlpatterns = [
     # path("student-delete/<int:pk>", student_delete, name="delete"),
     
     #! Class endpoints
-    path("student/", StudentListCreate.as_view()),
-    path("student/<int:pk>", StudentDetail.as_view()),
+    # path("student/", StudentListCreate.as_view()),
+    # path("student/<int:pk>", StudentDetail.as_view()),
+    
+    # path("student/", StudentGAV.as_view()),
+    # path("student/<int:pk>", StudentDetailViewGAV.as_view()),
+    
+    path("student/", StudentCV.as_view()),
+    path("student/<int:pk>", StudentDetailCV.as_view()),
+    
 ]
 
 

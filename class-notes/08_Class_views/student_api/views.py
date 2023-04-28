@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
 from .models import Student, Path
 from .serializers import StudentSerializer, PathSerializer
@@ -149,3 +150,68 @@ class StudentDetail(APIView):
         student.delete()
         message = {"message": "Student successfully deleted.."}
         return Response(message, status=status.HTTP_200_OK)
+    
+#! GenericApiView class and Mixins
+
+""" One of the key benefits of class-based views is the way they allow you to compose bits of reusable behavior. REST framework takes advantage of this by providing a number of pre-built views that provide for commonly used patterns.
+
+GenericAPIView class extends REST framework's APIView class, adding commonly required behavior for standard list and detail views. Some Basic Attributes and Methods. """
+
+#? Mixins
+
+""" The mixin classes provide the actions that are used to provide the basic view behavior. Note that the mixin classes provide action methods rather than defining the handler methods, such as .get() and .post(), directly. This allows for more flexible composition of behavior. Tek başlarına bir işlem yapamazlar. GenericAPIView ile anlamlı oluyor
+
+The mixin classes can be imported from rest_framework.mixins.
+
+- ListModelMixin
+    - list method
+- CreateModelMixin
+    - create method
+- RetrieveModelMixin
+    - retrieve method
+- UpdateModelMixin
+    - update method
+- DestroyModelMixin
+    - destroy method """
+    
+class StudentGAV(mixins.ListModelMixin, mixins.CreateModelMixin, GenericAPIView):
+    
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
+    
+class StudentDetailViewGAV(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, GenericAPIView):
+    
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+    
+
+#! Concrete Views
+
+class StudentCV(ListCreateAPIView):
+
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+class StudentDetailCV(RetrieveUpdateDestroyAPIView):
+    
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer  
+     
+    
+#! Viewsets
