@@ -35,12 +35,7 @@ def student_create(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(["GET"])
-def student_detail(request, pk):
-    # student = Student.objects.get(id=pk)
-    student = get_object_or_404(Student, id=pk)
-    serializer = StudentSerializer(student)
-    return Response(serializer.data)
+
 
 @api_view(["PATCH"])
 def student_update(request, pk):
