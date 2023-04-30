@@ -9,8 +9,7 @@ from .models import Student, Path
 from .serializers import StudentSerializer, PathSerializer
 
 
-def home(request):
-    return HttpResponse('<h1>API Page</h1>')
+
 
 #? HTTP methods -------->>>
 # - GET (DB den veri çağırma, read)
