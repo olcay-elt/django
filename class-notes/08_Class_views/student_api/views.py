@@ -5,7 +5,8 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, mixins, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-
+from .models import Student, Path
+from .serializers import StudentSerializer, PathSerializer
 
 
 def home(request):
