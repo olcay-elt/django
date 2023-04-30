@@ -19,7 +19,11 @@ def home(request):
 # - DELETE (DB de değişiklik, delete)
 # - PATCH (DB de değişiklik, partially update)
 
-
+@api_view(["GET"])
+def student_api(request):
+    student = Student.objects.all()  # data type : queryset
+    serializer = StudentSerializer(student, many=True) # data type : querydict
+    return Response(serializer.data)   # data type : JSON
 
 @api_view(["POST"])
 def student_create(request):
