@@ -42,17 +42,7 @@ def student_detail(request, pk):
     serializer = StudentSerializer(student)
     return Response(serializer.data)
 
-@api_view(["PATCH"])
-def student_update(request, pk):
-    student = get_object_or_404(Student, id=pk)
-    serializer = StudentSerializer(instance=student, data=request.data, partial=True)
-    if serializer.is_valid():
-        serializer.save()
-        # message = {"message": "Student successfully updated.."}
-        data = serializer.data
-        data["message"] = "Student successfully updated.."
-        return Response(data, status=status.HTTP_200_OK)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(["DELETE"])
 def student_delete(request, pk):
