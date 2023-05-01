@@ -99,7 +99,14 @@ def student_api_get_update_delete(request, pk):
             data = {
                 "message": f"Student {student.last_name} updated successfully"
             }
-     
+            return Response(data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        student.delete()
+        data = {
+            "message": f"Student {student.last_name} deleted successfully"
+        }
+        return Response(data)
     
     
 #!################### CLASS VIEWS  ###########################################
