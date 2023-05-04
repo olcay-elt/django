@@ -218,20 +218,36 @@ class StudentDetailCV(RetrieveUpdateDestroyAPIView):
     
 #! Viewsets
 
-from .pagination import MySmallNumberPagination
+from .pagination import MySmallNumberPagination, MyLimitOffsetPagination, MyCursorPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 class StudentMVS(ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    pagination_class =  MySmallNumberPagination
+    # pagination_class =  MyCursorPagination
+    filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
+    filterset_fields = ['first_name', 'last_name', ]
+    search_fields = ['first_name', "last_name"]
+    ordering_fields = ['number']
+    
+    def get_queryset(self):
+        # queryset = self.get_queryset
+        queryset = super().get_queryset()
+        path = self.request.query_params.get('branş')
+        if path:
+            my_path = Path.objects.get(path_name=path)
+            queryset = Student.objects.filter(path = my_path.id)
+        return queryset
     
 
+    
+# http://127.0.0.1:8000/api/student/?branş=FullStack
     
 class PathMVS(ModelViewSet):
     queryset= Path.objects.all()
     serializer_class = PathSerializer
-   
-    
+    search_fields = ["path_name"]
 
         
     
