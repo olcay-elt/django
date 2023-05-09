@@ -1,5 +1,5 @@
 from django.contrib import admin 
-from django.urls import path 
+from django.urls import path , include
  
 # Three modules for swagger:
 from rest_framework import permissions 
@@ -14,7 +14,7 @@ schema_view = get_schema_view(
 
         description="Flight Reservation API project provides flight and reservation info", 
         terms_of_service="#", 
-        contact=openapi.Contact(email="rafe@clarusway.com"),  # Change e-mail on this line! 
+        contact=openapi.Contact(email="victor@clarusway.com"),  # Change e-mail on this line! 
         license=openapi.License(name="BSD License"), 
     ), 
     public=True, 
@@ -25,10 +25,11 @@ schema_view = get_schema_view(
 urlpatterns = [ 
     path("admin/", admin.site.urls), 
  
-    # Url paths for swagger: 
+    # Url paths for swagger and debug toolbar: 
     path("swagger(<format>\.json|\.yaml)", 
 schema_view.without_ui(cache_timeout=0), name="schema-json"), 
     path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), 
 name="schema-swagger-ui"), 
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"), 
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
