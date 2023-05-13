@@ -1,8 +1,6 @@
 from .base import *
 
-THIRD_PARTY_APPS = ["debug_toolbar"] 
- 
-DEBUG = True 
+
  
 INSTALLED_APPS += THIRD_PARTY_APPS 
  
