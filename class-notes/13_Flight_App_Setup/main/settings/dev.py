@@ -6,7 +6,9 @@ DEBUG = True
  
 INSTALLED_APPS += THIRD_PARTY_APPS 
  
-
+ 
+ 
+MIDDLEWARE += THIRD_PARTY_MIDDLEWARE 
  
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases 
