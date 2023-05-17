@@ -1,4 +1,3 @@
 FROM python:alpine3.18
 WORKDIR /app
 COPY . .
-CMD python apps.py
