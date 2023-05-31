@@ -25,9 +25,6 @@ class Passenger(models.Model):
         return f'{self.first_name} {self.last_name}'
     
 
-class Reservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name="reservations")
-    passenger = models.ManyToManyField(Passenger, related_name="reservation")
+
     
     
